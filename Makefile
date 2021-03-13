@@ -1,4 +1,4 @@
-install: npm install
+install: install-deps
 
 lint: npx eslint .
 
