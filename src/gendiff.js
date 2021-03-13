@@ -10,8 +10,7 @@ program
   .option('-f, --format [type]', 'output format')
   .action((f1, f2) => {
     const result = JSON.stringify(findDiff(f1, f2), null, 2);
-    const regex = /"/gi;
-    console.log(result.replace(regex, ''));
+    console.log(result.replace(/"/gi, ''));
   });
 
 program.parse();
