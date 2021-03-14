@@ -16,6 +16,6 @@ jobs:
       - name: Run linter
         run: |
           ls -la
-          make lint
+          npm eslint .
       - name: run jest
         run: npm run test      
