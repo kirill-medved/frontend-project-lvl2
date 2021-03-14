@@ -4,7 +4,7 @@ run: bin/nodejs-package.js 10
 
 install-deps: npm ci
 
-lint: npx eslint .
+lint: npm eslint .
 
 test: npm test
 
