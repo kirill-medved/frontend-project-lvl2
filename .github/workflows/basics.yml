@@ -1,0 +1,15 @@
+name: testing
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Npm install
+        run: npm ci
+      - name: Run linter
+        run: make lint      
