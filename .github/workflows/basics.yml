@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
       - name: Npm install
         run: npm ci
       - name: Run linter
