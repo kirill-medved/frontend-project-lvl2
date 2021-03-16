@@ -1,6 +1,6 @@
 name: testing
 
-on: [push]
+on: push
 
 jobs:
   test:
@@ -8,11 +8,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
+        uses: actions/checkout@v2
       - name: Npm install
         run: npm ci
       - name: Run linter
