@@ -7,8 +7,12 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
       - name: Npm install
         run: npm ci
       - name: Run linter
