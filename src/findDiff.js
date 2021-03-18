@@ -1,8 +1,15 @@
 import fs from 'fs';
 
 const findDiff = (filepath1, filepath2) => {
-  const file1 = JSON.parse(fs.readFileSync(filepath1).toString()); // convert file data to obj
-  const file2 = JSON.parse(fs.readFileSync(filepath2).toString());
+  let file1 = null;
+  let file2 = null;
+  try {
+    file1 = JSON.parse(fs.readFileSync(filepath1).toString()); // convert file data to obj
+    file2 = JSON.parse(fs.readFileSync(filepath2).toString());
+  } catch (e) {
+    throw e;
+  }
+
   const ent1 = Object.entries(file1);
   const ent2 = Object.entries(file2);
 
