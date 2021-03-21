@@ -7,10 +7,10 @@ program
   .description('Compares two configuration files and shows a difference')
   .arguments('<filepath1> <filepath2>')
   .version('0.0.1', '-V, --version', 'output the version number')
-  .option('-f, --format [type]', 'output format')
+  .option('-f, --format [type]', 'output format type [stylish]', 'stylish')
   .action((f1, f2) => {
     const result = JSON.stringify(findDiff(f1, f2), null, 2);
-    console.log(result.replace(/"/gi, ''));
+    console.log(result.replace(/"/gi, '').replace(/,/gi, ''));
   });
 
 program.parse();

@@ -10,7 +10,7 @@ const getFixturePath = (filename) =>
   path.join(__dirname, '..', '__fixtures__', filename);
 
 describe('test findDiff func', () => {
-  it('with correct path', () => {
+  it('work correct path for json files', () => {
     const path1 = getFixturePath('file1.json');
     const path2 = getFixturePath('file2.json');
     expect(findDiff(path1, path2)).toEqual({
@@ -22,6 +22,19 @@ describe('test findDiff func', () => {
       '- timeout': 50,
       '- verbose': false,
       host: 'hexlet.io',
+    });
+  });
+
+  it('work correct path for yaml files', () => {
+    const path1 = getFixturePath('file1.yaml');
+    const path2 = getFixturePath('file2.yaml');
+    expect(findDiff(path1, path2)).toEqual({
+      '+ age': 34,
+      '+ married': true,
+      '- age': 26,
+      '- married': false,
+      email: 'fghj@mail.ru',
+      name: 'kirill',
     });
   });
 
