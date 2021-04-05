@@ -502,4 +502,12 @@ describe('test func findDiff for', () => {
       new Error("This format doesn't exist"),
     );
   });
+
+  it('uncorrect filepath', () => {
+    const path1 = getFixturePath('wrongfilepath.json');
+    const path2 = getFixturePath('newNestedStructure.json');
+    expect(findDiff(path1, path2, 'stylish')).toEqual(
+      new Error('File not found!'),
+    );
+  });
 });
