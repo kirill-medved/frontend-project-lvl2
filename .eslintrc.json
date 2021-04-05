@@ -6,13 +6,14 @@
     "plugins": [
         "prettier"
     ],
-    "env": {
-        "jest/globals": true 
-    },
     "parserOptions": {
         "ecmaVersion": 2020
     },
+    "env": {
+        "jest": true
+    },
     "rules": {
+        "dot-notation": "off",
         "no-console": "off",
         "import/extensions": "off",
         "no-underscore-dangle": [
