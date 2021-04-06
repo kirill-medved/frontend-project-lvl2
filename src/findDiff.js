@@ -2,7 +2,7 @@ import getJsObj from './parsers/extnameParser.js';
 import selectFormat from './formatters/index.js';
 import createAST from './parsers/createAST.js';
 
-const findDiff = (path1, path2, format = 'stylish') => {
+const findDiff = (path1, path2, format) => {
   let obj1 = null;
   let obj2 = null;
   try {
@@ -12,7 +12,22 @@ const findDiff = (path1, path2, format = 'stylish') => {
   }
   const ast = createAST(obj1, obj2);
   const difObj = selectFormat(ast, format);
-  return difObj;
+
+  switch (format) {
+    case 'stylish':
+      return JSON.stringify(difObj, null, 2)
+        .replace(/"/gi, '')
+        .replace(/,/gi, '');
+
+    case 'plain':
+      return difObj;
+
+    case 'json':
+      return JSON.stringify(difObj, null, 2);
+
+    default:
+      return difObj;
+  }
 };
 
 export default findDiff;

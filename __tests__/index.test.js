@@ -12,62 +12,63 @@ describe('test findDiff func for stylish format', () => {
   it('work correct for json files', () => {
     const path1 = getFixturePath('oldNestedStructure.json');
     const path2 = getFixturePath('newNestedStructure.json');
-    expect(findDiff(path1, path2, 'stylish')).toEqual({
-      '+ group3': {
-        deep: {
-          id: {
-            number: 45,
-          },
-        },
-        fee: 100500,
-      },
-      '+ group5': {
-        abc: 12345,
-        deep: {
-          id: 45,
-        },
-      },
-      '- group2': {
-        abc: 12345,
-        deep: {
-          id: 45,
-        },
-      },
-      '- group4': {
-        abc: 12345,
-        deep: {
-          id: 45,
-        },
-      },
-      common: {
-        '  setting1': 'Value 1',
-        '+ follow': false,
-        '+ setting3': null,
-        '+ setting4': 'blah blah',
-        '+ setting5': {
-          key5: 'value5',
-        },
-        '- setting2': 200,
-        '- setting3': true,
-        setting6: {
-          '  key': 'value',
-          '+ ops': 'vops',
-          doge: {
-            '+ wow': 'so much',
-            '- wow': '',
-          },
-        },
-      },
-      group1: {
-        '  foo': 'bar',
-        '+ baz': 'bars',
-        '+ nest': 'str',
-        '- baz': 'bas',
-        '- nest': {
-          key: 'value',
-        },
-      },
-    });
+    expect(findDiff(path1, path2, 'stylish')).toEqual(
+      '{\n' +
+        'common: {\n' +
+        '  + follow: false\n' +
+        '    setting1: Value 1\n' +
+        '   - setting2: 200\n' +
+        '  - setting3: true\n' +
+        '  + setting3: null\n' +
+        '  + setting4: blah blah\n' +
+        '  + setting5: {\n' +
+        '    key5: value5\n' +
+        '  }\n' +
+        '  setting6: {\n' +
+        '    doge: {\n' +
+        '      - wow:·' +
+        '      + wow: so much\n' +
+        '      key: value\n' +
+        '    + ops: vops\n' +
+        '  }\n' +
+        '}\n' +
+        'group1: {\n' +
+        '  - baz: bas\n' +
+        '  + baz: bars\n' +
+        '    foo: bar\n' +
+        '  - nest: {\n' +
+        '    key: value\n' +
+        '  }\n' +
+        '  + nest: str\n' +
+        '}\n' +
+        '- group2: {\n' +
+        '  abc: 12345\n' +
+        '  deep: {\n' +
+        '    id: 45\n' +
+        '  }\n' +
+        '}\n' +
+        '+ group3: {\n' +
+        '  deep: {\n' +
+        '    id: {\n' +
+        '      number: 45\n' +
+        '    }\n' +
+        '  }\n' +
+        '  fee: 100500\n' +
+        '}\n' +
+        '- group4: {\n' +
+        '  abc: 12345\n' +
+        '  deep: {\n' +
+        '    id: 45\n' +
+        '  }\n' +
+        '}\n' +
+        '+ group5: {\n' +
+        '  abc: 12345\n' +
+        '  deep: {\n' +
+        '    id: 45\n' +
+        '  }\n' +
+        '}\n' +
+        '}',
+    );
   });
 
   it('work correct for yaml files', () => {

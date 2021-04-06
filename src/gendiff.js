@@ -8,7 +8,7 @@ program
   .arguments('<filepath1> <filepath2>')
   .version('0.0.1', '-V, --version', 'output the version number')
   .option('-f, --format [type]', 'output format type [stylish]', 'stylish')
-  .action((path1, path2, { format }) => {
+  .action((path1, path2, { format = 'stylish' }) => {
     const result = findDiff(path1, path2, format);
 
     switch (format) {
@@ -16,24 +16,20 @@ program
         console.log(
           JSON.stringify(result, null, 2).replace(/"/gi, '').replace(/,/gi, ''),
         );
-        return JSON.stringify(result, null, 2)
-          .replace(/"/gi, '')
-          .replace(/,/gi, '');
+        break;
 
       case 'plain':
         console.log(result);
-        return result;
+        break;
 
       case 'json':
         console.log(JSON.stringify(result, null, 2));
-        return JSON.stringify(result, null, 2);
+        break;
 
       default:
         console.log(result);
         break;
     }
-
-    return result;
   });
 
 program.parse();
