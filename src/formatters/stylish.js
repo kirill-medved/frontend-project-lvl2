@@ -17,7 +17,7 @@ const stylish = (ast) => {
   // collecting of converted data
   const formattedAst = ast.reduce((acc, [key, value]) => {
     if (Array.isArray(value)) {
-      acc[key] = stylish(value);
+      acc[`  ${key}`] = stylish(value);
       return acc;
     }
 

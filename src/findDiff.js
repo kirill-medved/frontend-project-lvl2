@@ -15,15 +15,15 @@ const findDiff = (path1, path2, format = 'stylish') => {
 
   switch (format) {
     case 'stylish':
-      return JSON.stringify(difObj, null, 4)
-        .replace(/"/gi, ' ')
-        .replace(/,/gi, ' ');
+      return JSON.stringify(difObj, null, 2)
+        .replace(/"/gi, '')
+        .replace(/,/gi, '');
 
     case 'plain':
       return difObj;
 
     case 'json':
-      return JSON.stringify(difObj, null, 4);
+      return JSON.stringify(difObj, null, 2);
 
     default:
       return difObj;

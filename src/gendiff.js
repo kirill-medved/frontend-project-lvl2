@@ -11,25 +11,7 @@ program
   .action((path1, path2, { format = 'stylish' }) => {
     const result = findDiff(path1, path2, format);
 
-    switch (format) {
-      case 'stylish':
-        console.log(
-          JSON.stringify(result, null, 2).replace(/"/gi, '').replace(/,/gi, ''),
-        );
-        break;
-
-      case 'plain':
-        console.log(result);
-        break;
-
-      case 'json':
-        console.log(JSON.stringify(result, null, 2));
-        break;
-
-      default:
-        console.log(result);
-        break;
-    }
+    console.log(result);
   });
 
 program.parse();
