@@ -2,7 +2,7 @@ import getJsObj from './parsers/extnameParser.js';
 import selectFormat from './formatters/index.js';
 import createAST from './parsers/createAST.js';
 
-const findDiff = (path1, path2, format) => {
+const findDiff = (path1, path2, format = 'stylish') => {
   let obj1 = null;
   let obj2 = null;
   try {
