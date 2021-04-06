@@ -19,7 +19,10 @@ const getJsObj = (path1, path2) => {
     return [file1, file2];
   }
 
-  if (path.extname(path1) === '.yaml' && path.extname(path2) === '.yaml') {
+  if (
+    (path.extname(path1) === '.yaml' && path.extname(path2) === '.yaml') ||
+    (path.extname(path1) === '.yml' && path.extname(path2) === '.yml')
+  ) {
     let doc1 = null;
     let doc2 = null;
     try {
@@ -27,8 +30,7 @@ const getJsObj = (path1, path2) => {
       doc2 = yaml.load(fs.readFileSync(path2, 'utf8'));
     } catch (error) {
       if (error.code === 'ENOENT') {
-        console.log('File not found!');
-        return undefined;
+        throw new Error('File not found!');
       }
       throw error;
     }
