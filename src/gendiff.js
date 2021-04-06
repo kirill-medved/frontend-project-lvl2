@@ -16,20 +16,24 @@ program
         console.log(
           JSON.stringify(result, null, 2).replace(/"/gi, '').replace(/,/gi, ''),
         );
-        break;
+        return JSON.stringify(result, null, 2)
+          .replace(/"/gi, '')
+          .replace(/,/gi, '');
 
       case 'plain':
         console.log(result);
-        break;
+        return result;
 
       case 'json':
         console.log(JSON.stringify(result, null, 2));
-        break;
+        return JSON.stringify(result, null, 2);
 
       default:
         console.log(result);
         break;
     }
+
+    return result;
   });
 
 program.parse();

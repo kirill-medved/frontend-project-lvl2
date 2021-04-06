@@ -506,8 +506,6 @@ describe('test func findDiff for', () => {
   it('uncorrect filepath', () => {
     const path1 = getFixturePath('wrongfilepath.json');
     const path2 = getFixturePath('newNestedStructure.json');
-    expect(findDiff(path1, path2, 'stylish')).toEqual(
-      new Error('File not found!'),
-    );
+    expect(findDiff(path1, path2, 'stylish')).toEqual('File not found!');
   });
 });
