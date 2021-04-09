@@ -1,29 +1,28 @@
-import getJsObj from './parsers/extnameParser.js';
+import getObj from './parsers/extnameParser.js';
 import selectFormat from './formatters/index.js';
-import createAST from './parsers/createAST.js';
+import describeAST from './parsers/describeAST.js';
 
 const findDiff = (path1, path2, format = 'stylish') => {
   let obj1 = null;
   let obj2 = null;
   try {
-    [obj1, obj2] = getJsObj(path1, path2);
+    obj1 = getObj(path1);
+    obj2 = getObj(path2);
   } catch (error) {
     return error.message;
   }
-  const ast = createAST(obj1, obj2);
+  const ast = describeAST(obj1, obj2);
   const difObj = selectFormat(ast, format);
 
   switch (format) {
     case 'stylish':
-      return JSON.stringify(difObj, null, 2)
-        .replace(/"/gi, '')
-        .replace(/,/gi, '');
+      return difObj;
 
     case 'plain':
       return difObj;
 
     case 'json':
-      return JSON.stringify(difObj, null, 2);
+      return JSON.stringify(difObj, null, 4);
 
     default:
       return difObj;

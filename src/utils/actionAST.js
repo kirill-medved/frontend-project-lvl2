@@ -1,4 +1,4 @@
-const astAPI = (type, props) => {
+const actionAST = (type, props) => {
   // this function collects a ready-made array from the received data to add it to the ast tree
   switch (type) {
     case 'removed':
@@ -58,4 +58,4 @@ const astAPI = (type, props) => {
   return "Error! Something doesn't work";
 };
 
-export default astAPI;
+export default actionAST;

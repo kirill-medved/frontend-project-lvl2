@@ -2,13 +2,11 @@ import path from 'path';
 import fs from 'fs';
 import yaml from 'js-yaml';
 
-const getJsObj = (path1, path2) => {
-  if (path.extname(path1) === '.json' && path.extname(path2) === '.json') {
-    let file1 = null;
-    let file2 = null;
+const getObj = (filepath) => {
+  if (path.extname(filepath) === '.json') {
+    let file = null;
     try {
-      file1 = JSON.parse(fs.readFileSync(path1).toString());
-      file2 = JSON.parse(fs.readFileSync(path2).toString());
+      file = JSON.parse(fs.readFileSync(filepath).toString());
     } catch (error) {
       if (error.code === 'ENOENT') {
         throw new Error('File not found!');
@@ -16,18 +14,13 @@ const getJsObj = (path1, path2) => {
       throw error;
     }
 
-    return [file1, file2];
+    return file;
   }
 
-  if (
-    (path.extname(path1) === '.yaml' && path.extname(path2) === '.yaml') ||
-    (path.extname(path1) === '.yml' && path.extname(path2) === '.yml')
-  ) {
-    let doc1 = null;
-    let doc2 = null;
+  if (path.extname(filepath) === '.yaml' || path.extname(filepath) === '.yml') {
+    let doc = null;
     try {
-      doc1 = yaml.load(fs.readFileSync(path1, 'utf8'));
-      doc2 = yaml.load(fs.readFileSync(path2, 'utf8'));
+      doc = yaml.load(fs.readFileSync(filepath, 'utf8'));
     } catch (error) {
       if (error.code === 'ENOENT') {
         throw new Error('File not found!');
@@ -35,10 +28,10 @@ const getJsObj = (path1, path2) => {
       throw error;
     }
 
-    return [doc1, doc2];
+    return doc;
   }
 
   return new Error('unknown file extension');
 };
 
-export default getJsObj;
+export default getObj;
