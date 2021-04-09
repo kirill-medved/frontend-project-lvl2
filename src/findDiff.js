@@ -16,10 +16,10 @@ const findDiff = (path1, path2, format = 'stylish') => {
 
   switch (format) {
     case 'stylish':
-      return difObj;
+      return difObj.trim();
 
     case 'plain':
-      return difObj;
+      return difObj.trim();
 
     case 'json':
       return JSON.stringify(difObj, null, 4);
