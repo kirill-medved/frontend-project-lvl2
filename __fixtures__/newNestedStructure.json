@@ -16,9 +16,14 @@
     }
   },
   "group1": {
-    "foo": "bar",
+    "default": "",
+    "key": false,
+    "isNested": "none",
+    "foo": null,
     "baz": "bars",
-    "nest": "str"
+    "nest": {
+      "bar": 0
+    }
   },
   "group3": {
     "deep": {

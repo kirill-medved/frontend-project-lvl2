@@ -25,15 +25,17 @@ const describeAST = (obj1, obj2) => {
       .map((arr, parent) => {
         if (arr.length === 1) {
           // property include in old or new file
+          const key1 = arr[0][0];
           const value1 = arr[0][1];
-
-          if (ast1.some(([, value]) => value === value1)) {
+          if (ast1.some(([key, value]) => value === value1 && key === key1)) {
             return actionAST('removed', { parent, path, value1 });
           }
 
-          if (ast2.some(([, value]) => value === value1)) {
+          if (ast2.some(([key, value]) => value === value1 && key === key1)) {
             return actionAST('added', { parent, path, value1 });
           }
+
+          return 'something missing';
         }
         const value1 = arr[0][1]; // old data
         const value2 = arr[1][1]; // new data
