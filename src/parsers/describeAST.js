@@ -1,22 +1,22 @@
 import _ from 'lodash';
-import astAPI from '../api/createAstAPI.js';
+import actionAST from '../utils/actionAST.js';
 
-const createAST = (obj1, obj2) => {
-  const astFromObj = (obj) => {
+const describeAST = (obj1, obj2) => {
+  const prepareData = (obj) => {
     const ast = _(obj)
       .toPairs()
       .sort((a, b) => (a > b ? 1 : -1))
       .map(([key, value]) => {
         if (_.isObjectLike(value) && !Array.isArray(value)) {
-          return [key, astFromObj(value)];
+          return [key, prepareData(value)];
         }
         return [key, value];
       })
       .value();
     return ast;
   };
-  const oldAst = astFromObj(obj1);
-  const newAst = astFromObj(obj2);
+  const oldAst = prepareData(obj1);
+  const newAst = prepareData(obj2);
 
   const findDiff = (ast1, ast2, path = '') =>
     _([...ast2, ...ast1])
@@ -28,24 +28,24 @@ const createAST = (obj1, obj2) => {
           const value1 = arr[0][1];
 
           if (ast1.some(([, value]) => value === value1)) {
-            return astAPI('removed', { parent, path, value1 });
+            return actionAST('removed', { parent, path, value1 });
           }
 
           if (ast2.some(([, value]) => value === value1)) {
-            return astAPI('added', { parent, path, value1 });
+            return actionAST('added', { parent, path, value1 });
           }
         }
         const value1 = arr[0][1]; // old data
         const value2 = arr[1][1]; // new data
 
         if (value1 === value2) {
-          return astAPI('same', { parent, path, value1 });
+          return actionAST('same', { parent, path, value1 });
         }
         if (Array.isArray(value1) && Array.isArray(value2)) {
           return [parent, findDiff(value1, value2, path.concat(`${parent}.`))];
         }
         if (value1 !== value2) {
-          return astAPI('updated', { parent, path, value1, value2 });
+          return actionAST('updated', { parent, path, value1, value2 });
         }
 
         return 'missing something';
@@ -55,4 +55,4 @@ const createAST = (obj1, obj2) => {
   return diff;
 };
 
-export default createAST;
+export default describeAST;
