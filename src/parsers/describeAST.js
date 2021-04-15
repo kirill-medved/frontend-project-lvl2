@@ -5,7 +5,7 @@ const describeAST = (obj1, obj2) => {
   const prepareData = (obj) => {
     const ast = _(obj)
       .toPairs()
-      .sort((a, b) => (a > b ? 1 : -1))
+      .sortBy([(o) => o[0]])
       .map(([key, value]) => {
         if (_.isObjectLike(value) && !Array.isArray(value)) {
           return [key, prepareData(value)];
@@ -20,7 +20,8 @@ const describeAST = (obj1, obj2) => {
 
   const findDiff = (ast1, ast2, path = '') =>
     _([...ast2, ...ast1])
-      .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+      .sortBy([(o) => o[0]])
+      // .sort((a, b) => (a[0] > b[0] ? 1 : -1))
       .groupBy((item) => item[0])
       .map((arr, parent) => {
         if (arr.length === 1) {
