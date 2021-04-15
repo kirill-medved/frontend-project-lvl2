@@ -8,6 +8,8 @@
     "jest": true
   },
   "rules": {
+    "implicit-arrow-linebreak": "error",
+    "no-else-return": "error",
     "no-nested-ternary": "error",
     "dot-notation": "off",
     "no-console": "off",

@@ -3,11 +3,11 @@ const actionAST = (type, props) => {
   const messageValue = (value) => {
     if (Array.isArray(value)) {
       return '[complex value]';
-    } else if (typeof value === 'string') {
-      return `'${value}'`;
-    } else {
-      return value;
     }
+    if (typeof value === 'string') {
+      return `'${value}'`;
+    }
+    return value;
   };
 
   switch (type) {

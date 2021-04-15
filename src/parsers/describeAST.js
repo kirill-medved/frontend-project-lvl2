@@ -2,8 +2,7 @@ import _ from 'lodash';
 import actionAST from '../utils/actionAST.js';
 
 const describeAST = (obj1, obj2) => {
-  const prepareData = (obj) =>
-    _(obj)
+  const prepareData = (obj) => _(obj)
       .toPairs()
       .sortBy([(o) => o[0]])
       .map(([key, value]) => {
@@ -17,8 +16,7 @@ const describeAST = (obj1, obj2) => {
   const oldAst = prepareData(obj1);
   const newAst = prepareData(obj2);
 
-  const findDiff = (ast1, ast2, path = '') =>
-    _([...ast1, ...ast2])
+  const findDiff = (ast1, ast2, path = '') => _([...ast1, ...ast2])
       .sortBy([(o) => o[0]])
       .groupBy((item) => item[0])
       .map((arr, parent) => {
