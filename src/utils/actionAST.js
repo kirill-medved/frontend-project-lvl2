@@ -4,7 +4,7 @@ const actionAST = (type, props) => {
     if (Array.isArray(value)) {
       return '[complex value]';
     } else if (typeof value === 'string') {
-      return `'${value1}'`;
+      return `'${value}'`;
     } else {
       return value;
     }
