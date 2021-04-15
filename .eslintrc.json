@@ -8,7 +8,7 @@
     "jest": true
   },
   "rules": {
-    "no-nested-ternary": "off",
+    "no-nested-ternary": "error",
     "dot-notation": "off",
     "no-console": "off",
     "import/extensions": "off",
