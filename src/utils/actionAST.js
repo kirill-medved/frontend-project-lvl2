@@ -1,5 +1,15 @@
 const actionAST = (type, props) => {
   // this function collects a ready-made array from the received data to add it to the ast tree
+  const messageValue = (value) => {
+    if (Array.isArray(value)) {
+      return '[complex value]';
+    }
+    if (typeof value === 'string') {
+      return `'${value}'`;
+    }
+    return value;
+  };
+
   switch (type) {
     case 'removed':
       return [
@@ -18,9 +28,7 @@ const actionAST = (type, props) => {
           type,
           message: `Property '${props.path.concat(
             props.parent,
-          )}' was added with value: ${
-            Array.isArray(props.value1) ? '[complex value]' : props.value1
-          }`,
+          )}' was added with value: ${messageValue(props.value1)}`,
           value: props.value1,
         },
       ];
@@ -32,11 +40,9 @@ const actionAST = (type, props) => {
           type,
           message: `Property '${props.path.concat(
             props.parent,
-          )}' was updated. From ${
-            Array.isArray(props.value1) ? '[complex value]' : props.value1
-          } to ${
-            Array.isArray(props.value2) ? '[complex value]' : props.value2
-          }`,
+          )}' was updated. From ${messageValue(props.value1)} to ${messageValue(
+            props.value2,
+          )}`,
           value1: props.value1,
           value2: props.value2,
         },

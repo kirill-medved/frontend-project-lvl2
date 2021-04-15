@@ -12,9 +12,11 @@
   },
   "group1": {
     "baz": "bas",
-    "foo": "bar",
+    "foo": 0,
+    "isNested": false,
     "nest": {
-      "key": "value"
+      "bar": "",
+      "isNested": true
     }
   },
   "group2": {

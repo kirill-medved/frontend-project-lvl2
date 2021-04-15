@@ -1,29 +1,25 @@
 {
-    "extends": [
-        "airbnb-base",
-        "prettier"
-    ],
-    "plugins": [
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2020
-    },
-    "env": {
-        "jest": true
-    },
-    "rules": {
-        "dot-notation": "off",
-        "no-console": "off",
-        "import/extensions": "off",
-        "no-underscore-dangle": [
-            2,
-            {
-                "allow": [
-                    "__filename",
-                    "__dirname"
-                ]
-            }
-        ]
-    }
+  "extends": ["airbnb-base", "prettier/recommended"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "implicit-arrow-linebreak": "error",
+    "no-else-return": "error",
+    "no-nested-ternary": "error",
+    "dot-notation": "off",
+    "no-console": "off",
+    "import/extensions": "off",
+    "no-confusing-arrow": ["error", { "allowParens": false }],
+    "no-underscore-dangle": [
+      2,
+      {
+        "allow": ["__filename", "__dirname"]
+      }
+    ]
+  }
 }
