@@ -15,7 +15,7 @@ const formatChild = (value, depth) => {
       );
     }
     return acc.concat(`${countIndents(depth + 1)}${key}: ${val}\n`);
-  }, ``);
+  }, '');
 
   return `{\n${checkChild}${countIndents(depth)}}\n`;
 };

@@ -3,14 +3,9 @@ import selectFormat from './formatters/index.js';
 import describeAST from './parsers/describeAST.js';
 
 const findDiff = (path1, path2, format = 'stylish') => {
-  let obj1 = null;
-  let obj2 = null;
-  try {
-    obj1 = getObj(path1);
-    obj2 = getObj(path2);
-  } catch (error) {
-    return error.message;
-  }
+  const obj1 = getObj(path1);
+  const obj2 = getObj(path2);
+
   const ast = describeAST(obj1, obj2);
   const difObj = selectFormat(ast, format);
 
